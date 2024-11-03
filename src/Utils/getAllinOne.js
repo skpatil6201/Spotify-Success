@@ -5,7 +5,7 @@ export const getAllInOne = async (query) => {
 
     const options = {
       method: 'GET',
-      url: 'https://spotify23.p.rapidapi.com/browse_all/',
+      url: 'https://spotify-web2.p.rapidapi.com/browse_all/',
       params: {
         q: query,
         type: 'multi',
@@ -15,7 +15,7 @@ export const getAllInOne = async (query) => {
       },
       headers: {
         'X-RapidAPI-Key': 'ab068aa3e5msh136b8c92674a555p19b1d9jsnc415c24e8404',
-        'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+        'X-RapidAPI-Host': 'spotify-web2.p.rapidapi.com'
       }
     };
     

@@ -1,22 +1,28 @@
 import PropTypes from 'prop-types';
 
+// Button component that allows customization of colors and styles
+const Button = ({ children, primaryColor, background, borderColor }) => {
+  // Define inline styles for the button based on props
+  const buttonStyles = {
+    color: primaryColor,                 // Text color
+    backgroundColor: background,         // Background color
+    border: `1px solid ${borderColor}`   // Border style
+  };
 
-const Button = ({children, primaryColor, background, borderColor}) => {
-    const buttonStyles = {
-        color: primaryColor,
-        backgroundColor: background,
-        border: `1px solid ${borderColor}`
-    }
   return (
-    <button style={buttonStyles} className="rounded-full px-2 py-1">{children}</button>
-  )
-}
-
-Button.propTypes = {
-    children: PropTypes.node.isRequired,
-    primaryColor: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    borderColor: PropTypes.string.isRequired
+    // Render the button with specified styles and children
+    <button style={buttonStyles} className="rounded-full px-2 py-1">
+      {children}
+    </button>
+  );
 };
 
-export default Button
+// Prop types for type checking and documentation
+Button.propTypes = {
+  children: PropTypes.node.isRequired,         // Content to be displayed inside the button
+  primaryColor: PropTypes.string.isRequired,    // Text color
+  background: PropTypes.string.isRequired,      // Background color
+  borderColor: PropTypes.string.isRequired       // Border color
+};
+
+export default Button;

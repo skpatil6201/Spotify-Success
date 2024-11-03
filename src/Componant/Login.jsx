@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFacebookF, FaGoogle, FaApple } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link for internal navigation
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    // Perform login logic here
+    console.log('Email submitted:', email);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-black">
       <div className="bg-gray-900 shadow-lg rounded-lg p-8 max-w-md w-full text-white">
@@ -28,14 +48,18 @@ const Login = () => {
         </div>
 
         {/* Email Login Form */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <label className="block text-gray-300 font-semibold mb-2">Email Address</label>
           <input
             type="email"
             className="w-full px-4 py-2 mb-4 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500 bg-gray-800 text-white placeholder-gray-400"
             placeholder="Enter your email"
+            value={email}
+            onChange={handleEmailChange}
+            required
           />
-          <button className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600">
+          {error && <p className="text-red-500 mb-2">{error}</p>} {/* Display error message */}
+          <button type="submit" className="w-full bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600">
             Log In with Email
           </button>
         </form>
@@ -43,9 +67,9 @@ const Login = () => {
         {/* Sign-Up Option */}
         <p className="text-center text-gray-400 mt-6">
           Don't have an account?{' '}
-          <a href="/signup" className="text-green-500 hover:underline">
+          <Link to="/signup" className="text-green-500 hover:underline">
             Sign up for Spotify
-          </a>
+          </Link>
         </p>
       </div>
     </div>
